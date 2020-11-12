@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div p:nth-of-type(n) {
+            color: Red;
+        }
+    </style>
+</head>
+
+<body>
+    <p>这是静态的。index_gb.html
+    </p>
+    <div>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+        <p>7</p>
+        <p>8</p>
+        <p>9</p>
+        <p>10</p>
+
+    </div>
+</body>
+
+<script>
+    let obj1 = {
+        a1: 2,
+        a2: 3,
+        get a4() {
+            return this.a1
+        },
+        set a4(value) {
+            this.a1 = value;
+        }
+    }
+    let obj2 = {
+        b1: 2,
+        b2: 3,
+        __proto__: obj1
+    }
+    // obj2.__proto__ = obj1;
+    class class1 {
+        constructor() {
+            this.good = 111;
+        }
+        c1 = '这是class1的字段';
+        static st_c1 = '这是class1 的静态类字段';
+        static st_c1f1() {
+            console.log('这是class1的静态方法')
+        }
+        c1_f1() {
+            console.log('这是class1的c1_f1方法')
+            console.log(this)
+            alert(this.good)
+        }
+        c2_f2 = () => {
+            console.log("这是类字段赋值了一个箭头函数")
+        }
+    }
+    obj3 = new class1()
+    for (key in obj3) {
+        if (obj3.hasOwnProperty(key)) {
+            console.log("这是自己的key：" + key)
+        }
+    }
+    class class2 extends class1 {
+        constructor() {
+            super()
+
+        }
+        c22 = '这是class2的类字段';
+        c22_f2() {
+            console.log("这是class 2 的构造函数")
+            console.log(this)
+            super.c1_f1()
+        }
+    }
+
+    function g1() {
+        this.good = 1;
+        this.good2 = () => {
+            console.log("这是类字段  赋值为一个箭头函数")
+        }
+        g1.g1_1 = '这是g1中自己的局部变量。没有给this'
+    }
+    g1.prototype.g11 = function() {
+        console.log("这是g1的prototype中定义的函数")
+    }
+    g1.prototype.lei1 = "这是g1的prototype中定义的类字段"
+    console.log(obj3)
+    console.log(class1)
+
+    console.log("这是g1：")
+    console.log(g1)
+    console.log(Object.getOwnPropertyDescriptors(g1))
+    console.log("这是new  g1:  ")
+    console.log(new g1())
+    console.log("这是class1：")
+    console.log(class1)
+    console.log(Object.getOwnPropertyDescriptors(class1))
+    console.log("这是继承了class 1的 class 2")
+    console.log(class2)
+    console.log(Object.getOwnPropertyDescriptors(class2))
+    console.log("这是new  class1:")
+    console.log(Object.getOwnPropertyDescriptors(new class1()))
+    console.log("这是Object： ")
+    console.log(Object)
+    console.log(Object.getOwnPropertyDescriptors(Object))
+    console.log("这是new  Object： ")
+    console.log(Object.getOwnPropertyDescriptors(new Object()))
+    let newclass2 = new class2()
+    console.log('这是new  class2 ')
+    console.log(newclass2)
+    console.log(newclass2.st_c1)
+    console.log(class2.c1)
+    //newclass2.c22_f2()
+</script>
+
+</html>

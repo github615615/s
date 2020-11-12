@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = 1;
+        async function f2() {
+            let await_1 = await new Promise((resolve, reject) => {
+                console.log(99999)
+                setTimeout(() => {
+                    a = 4;
+                    console.log(a)
+                    resolve(1)
+                    return 9;
+                }, 2000)
+            })
+            console.log(await_1)
+            alert('alskdfjaljf')
+        }
+        /*   f2()
+          console.log(88888888) */
+        async function wait() {
+            let a1 = await new Promise(resolve => setTimeout(resolve, 2000));
+            console.log(a1)
+            return 10;
+        }
+
+        function f3() {
+            // 1 秒后显示 10
+            wait().then(result => alert(result)); //因为async修饰的函数必定返回一个promise
+        }
+        f3()
+        p1 = new Promise(() => {
+            return 9
+        }).then(console.log).catch(console.log)
+    </script>
+</body>
+
+</html>

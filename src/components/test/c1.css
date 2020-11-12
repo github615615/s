@@ -1,0 +1,11 @@
+/* html {
+    font-size: 75px;
+}
+
+p {
+    font-size: 0.2133rem;
+    width: 13.3333rem;
+    background-color: red;
+} */
+
+@import url(c3.css) screen and (max-width:1800px)

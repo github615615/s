@@ -1,0 +1,33 @@
+/* 这是引入到其他文件中去的css。。 适应ipad  width>10.6667rem*/
+/* html {
+    font-size: calc(0.16rem + 10vmin)
+} */
+body {
+    font-size: 32rem
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+p:nth-of-type(1) {
+    width: 750rem;
+    background-color: pink;
+    /*  border: 1px solid black;
+    border-right: calc((0.0133rem /3)) solid black */
+}
+
+p:nth-of-type(2) {
+    width: 200rem;
+    border: calc((0.0133rem / 1.25)) solid black;
+    transform: scale(0.33333);
+    border: 1px solid black;
+}
+
+p:nth-of-type(3) {
+    width: 100rem;
+    border: calc((0.0133rem / 1.25)) solid black;
+    transform: scale(3);
+    border: 1px solid black;
+}
