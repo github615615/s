@@ -13,7 +13,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 var Store = (0, _redux.createStore)(_rootreducer["default"], {
   todo: ['1asd'],
-  TF: false
+  TF: false,
+  new_todo: []
 });
 
 Store.dispatchShow = function (action, show, payload) {

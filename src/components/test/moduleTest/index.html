@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<button id='b'>sss</button>
+
+<body>
+
+    <script>
+        b.addEventListener('click', () => {
+            location.href = 'www.baidu.om'
+        })
+        console.log(Array.__proto__)
+
+        function f1() {
+
+        }
+        f1.prototype = {
+            g1() {
+                alert('hhh')
+            },
+            g2: 123
+        }
+        console.log(f1)
+        console.log(Object.getOwnPropertyDescriptors(f1))
+        let obj1 = {
+            a: 1,
+            get a1() {
+                return 8;
+            },
+            set a1(v) {
+                console.log(this)
+                this.aa1 = v + 8;
+            }
+        }
+        let obj2 = {
+            a2: '这是obj2',
+            __proto__: obj1
+        }
+        obj2.a1 = 22
+        console.log(obj2)
+        console.log(Object.getOwnPropertyDescriptors(obj2))
+        console.log(new String('asaas'))
+        switch (new String('a')) {
+            case 'a':
+                console.log("this is a")
+                break;
+
+            default:
+                break;
+        }
+        console.log(Object.prototype)
+        console.log(Array)
+        console.log(Object)
+        console.log(String.__proto__ == Function.prototype)
+        console.log(Function)
+        let obj = {
+            a: 1,
+            b: {
+                b1: 1
+            }
+        }
+        let clone = Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj));
+        clone.b.b1 = 3
+        console.log(obj)
+        console.log(new f1())
+        for (let v in new f1()) {
+            console.log(v)
+        }
+        class c2 {
+            constructor() {
+                this.g1 = 1
+            }
+            g2 = 'g2...'
+            g3() {
+                console.log(this)
+                console.log(this.g2)
+            }
+            static g9() {
+                console.log("ggg 9  调用！")
+                console.log(this)
+            }
+        }
+        console.log(c2.g222)
+        let nc2 = new c2()
+        console.log(nc2.__proto__ == c2.prototype)
+        console.log(Object.getOwnPropertyDescriptors(nc2))
+
+        function f2(...a) {
+            console.log(a)
+            console.log(arguments)
+        }
+        f2(1, 2, 3, 4, 444, 333)
+        c2.g9()
+        class c1 extends c2 {
+            constructor() {
+                super()
+                console.log(this)
+                console.log(this.g9)
+            }
+            g2 = 6666
+            c1_f1() {
+                // c1.g3()
+            }
+        }
+        let nc1 = new c1()
+        nc1.c1_f1()
+        console.log(nc1)
+        console.log(c1.prototype.__proto__ == c2.prototype)
+        console.log(Object.prototype.toString.call(null))
+        console.log([] instanceof Array) //true
+    </script>
+</body>
+
+</html>

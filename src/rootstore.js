@@ -5,7 +5,8 @@ import {
 
 const Store = createStore(createReducer, {
     todo: ['1asd'],
-    TF: false
+    TF: false,
+    new_todo: [],
 })
 
 Store.dispatchShow = function(action, show, payload) {

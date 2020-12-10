@@ -11,6 +11,7 @@ export default class index extends Component {
             ToTest2: 100,
             selfState: 200,
             toBoth: 300,
+            state8: 0
         }
 
     }
@@ -40,6 +41,9 @@ export default class index extends Component {
     componentDidUpdate() {
         console.log("父   did  update！!")
     }
+    changeState8 = () => {
+        this.setState({ state8: Date.now() })
+    }
     render() {
         console.log("父  render !!! ")
         return (
@@ -51,7 +55,7 @@ export default class index extends Component {
                 <h5>下面两个是Test1和Test2: </h5>
                 <Test1 ToTest1={this.state.ToTest1} />
                 <Test2 ToTest2={this.state.ToTest2} />
-                <p>点击更新组件的传递给函数组件的props: | </p> <FunTest p1={this.state.ToTest1} />
+                <p onClick={this.changeState8}>点击更新组件的传递给函数组件的props: | </p> <FunTest p1={this.state.ToTest1} />
             </div>
         )
     }

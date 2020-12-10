@@ -7,6 +7,8 @@ exports["default"] = createReducer;
 
 var _myreducer = _interopRequireDefault(require("./components/Redux_test/myreducer"));
 
+var _reducer = require("./components/test/HookTest2/reducer");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function createReducer() {
@@ -19,7 +21,8 @@ function createReducer() {
     //应该是，每一次dispatch都会将action全部带入所有的reducer中去，然后，这就要求每一个reuducer最后必须返回一个它旧的值（state）
     // ...todos(state = state, action = action),
     todo: (0, _myreducer["default"])(state, action).todo,
-    TF: (0, _myreducer["default"])(state = state, action = action).trueOrf
+    TF: (0, _myreducer["default"])(state, action).trueOrf,
+    new_todo: (0, _reducer.add_hookX)(state.new_todo, action)
   };
 }
 /* export default function createRudecer(state = {}, action) {

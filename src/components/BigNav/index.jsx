@@ -14,6 +14,9 @@ export default class index extends Component {
                 <h2> <Link to='/bignav/test'>生命周期测试</Link> </h2>
                 <h2><Link to='bignav/axiostest'>axios测试</Link> </h2>
                 <h2><Link to='/bignav/reduxtest'>Redux test</Link> </h2>
+                <h2> <Link to='/bignav/hooktest'>hook测试</Link> </h2>
+                <h2><Link to='/bignav/hooktest2'>hooktest2 </Link> </h2>
+                <h2> <Link to='/bignav/routertest'>Router test</Link></h2>
             </div>
         )
     }

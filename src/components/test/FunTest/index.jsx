@@ -29,6 +29,7 @@ function Index() {
         a2++;
         console.log("这是a2: " + a2)
     }
+    // alert("函数组件更新了！")
     return <div>
         <button onClick={up_a1}>+{a1}</button>
         <span>这是非state中的：</span><button onClick={a2_add}>+{a2}</button>

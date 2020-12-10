@@ -1,4 +1,7 @@
 import todos from './components/Redux_test/myreducer';
+import {
+    add_hookX
+} from './components/test/HookTest2/reducer';
 export default function createReducer(state = [], action) { //这里的state将是redux传递过来的整个store。而不只是单个state！
     return {
         // todo: todos(state = state, action = action).todo, //这个应该是store树中state之一
@@ -6,7 +9,8 @@ export default function createReducer(state = [], action) { //这里的state将�
         //应该是，每一次dispatch都会将action全部带入所有的reducer中去，然后，这就要求每一个reuducer最后必须返回一个它旧的值（state）
         // ...todos(state = state, action = action),
         todo: todos(state, action).todo,
-        TF: todos(state = state, action = action).trueOrf,
+        TF: todos(state, action).trueOrf,
+        new_todo: add_hookX(state.new_todo, action),
     }
 }
 /* export default function createRudecer(state = {}, action) {

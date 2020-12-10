@@ -5,26 +5,164 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #big {
+            /* box-sizing: border-box; */
+            width: 500px;
+            height: 500px;
+            border: 10px gray solid;
+            margin: 10px;
+            /* padding: 20px; */
+            display: flex;
+        }
+
+
+        /* #sm::before {
+            display: inline-block;
+            content: '';
+            height: 100%;
+            vertical-align: middle;
+        } */
+        #sm {
+            width: 100%;
+            height: 500px;
+            border: 5px solid gray;
+            display: flex;
+            justify-content: start;
+        }
+
+        .mid {
+            /*  margin-top: calc(50% - 1em);
+            text-align: center; */
+            /* display: inline-block;
+            vertical-align: middle; */
+            border: 50px solid gray;
+            align-self: center;
+        }
+
+        .m2 {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            box-sizing: border-box;
+            flex-grow: 1;
+        }
+
+        #sp1 {
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+            width: 0;
+        }
+    </style>
 </head>
 
 <body>
+    <div id='big' tabindex="1">
+
+    </div>
+    <div id="sm">
+        <!-- <span id='sp1'></span> -->
+        <p class="mid">24234</p>
+        <p class='m2'>asdfasdf</p>
+        <p class="mid">999</p>
+    </div>
     <script>
-        let obj1 = {
-            a1: 1,
-            a2: {
-                oo1: 1,
-                oo2: 2,
-                oo3: {
-                    ooo1: 1,
-                }
-            }
+        /*  big.onkeydown = (e) => {
+            console.log(e)
+        } */
+        big = document.getElementById('big')
+        /*  big.addEventListener('keydown', (e) => {
+             console.log(e)
+         }) */
+        big.onmouseenter = (e) => {
+            document.addEventListener('keydown', keydown)
         }
-        let obj2 = {};
-        //Object.defineProperties(obj2, Object.getOwnPropertyDescriptors(obj1))
-        obj2 = Object.create({}, Object.getOwnPropertyDescriptors(obj1))
-        console.log(obj2)
-        obj2.a2.oo1 = 888;
-        console.log(obj1)
+
+        big.addEventListener('DOMMouseScroll', (e) => {
+            // 如果是移动端，则将DOMMouseScroll换成touchmove
+            if (e.detail == -3) {
+                // console.log(parseInt(big.getComputedStyle)-3})
+                big.style.cssText = `width:${parseInt(getComputedStyle(big).width)-3}px;height:${parseInt(getComputedStyle(big).height)-3}px`
+            } else {
+                big.style.cssText = `width:${parseInt(getComputedStyle(big).width)+3}px;height:${parseInt(getComputedStyle(big).height)+3}px`
+            }
+
+            e.preventDefault()
+        }, {
+            passive: false
+        }) //浏览器禁止滚动，passive是用来兼容ios和android。
+
+        function keydown(e) {
+            console.log(e)
+        }
+        big.onmouseleave = (e) => {
+            document.removeEventListener('keydown', keydown)
+        }
+        big.onclick = (e) => {
+            console.log(e)
+        }
+        document.cookie = 'ggod=1;samesite=lax'
+        let xhr = new XMLHttpRequest()
+        xhr.onreadystatechange = function() {
+            console.log(xhr.readyState)
+        }
+        // xhr.open('post', 'https://api.apiopen.top/getJoke?page=1&count=2&type=video')
+        xhr.open('post', './testcookie.js')
+        // xhr.timeout = 1;//
+
+        xhr.onloadstart = function(e) {
+            console.log("start:!!!")
+            console.log(e)
+        }
+        xhr.onprogress = function(e) {
+            console.log(e.loaded)
+            console.log("progress！！！")
+            console.log(e)
+        }
+        xhr.responseType = "json"
+        xhr.responseType =
+            /*  xhr.ontimeout = function(e) {
+                 console.log("请求超时：")
+                 console.log(e)
+             } */
+            console.log(xhr)
+        let form = new FormData()
+        form.append('1', 'aaaaaaaaaaaaaaaaaaaa')
+        xhr.upload.onprogress = function(e) {
+            console.log(e)
+        }
+        xhr.upload.onloadend = function(e) {
+            console.log("上传成功")
+            console.log(e)
+        }
+        xhr.onload = function(e) {
+            console.log(e)
+            console.log(xhr.response)
+        }
+
+        setTimeout(() => {
+            console.log(xhr.getAllResponseHeaders())
+
+            function getHead(xhr) {
+                Headers = {}
+                for (let message of xhr.getAllResponseHeaders().split('\r\n')) {
+                    if (message) {
+                        Headers[message.split(':')[0]] = message.split(':')[1]
+                    }
+                }
+                return Headers
+            }
+            console.log(getHead(xhr))
+        }, 1000);
+        xhr.send(form)
+        fetch('https://api.apiopen.top/getJoke?page=1&count=2&type=video', {
+                credentials: 'include',
+                method: 'post'
+            }).then((response) => response.json())
+            .then((result) => {
+                console.log(result)
+            })
     </script>
 </body>
 
